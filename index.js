@@ -1,24 +1,25 @@
-const character = "#";
-const count = 8;
+const character = "!";
+const count = 10;
 const rows = [];
+let inverted = false;
 
-function padRow(name) {
-  const test = "Testing";
-   console.log("This works!");
-
-  return test;
-   console.log("This works!");
+function padRow(rowNumber, rowCount) {
+  return (
+    " ".repeat(rowCount - rowNumber) +
+    character.repeat(2 * rowNumber - 1) +
+    " ".repeat(rowCount - rowNumber)
+  );
 }
 
-const call = padRow("CamperChan");
-console.log(call);
-
-
-for (let i = 0; i < count; i = i + 1) {
-  rows.push(character.repeat(i + 1))
+for (let i = 1; i <= count; i++) {
+  if (inverted) {
+    rows.unshift(padRow(i, count));
+  } else {
+    rows.push(padRow(i, count));
+  }
 }
 
-let result = ""
+let result = "";
 
 for (const row of rows) {
   result = result + "\n" + row;
